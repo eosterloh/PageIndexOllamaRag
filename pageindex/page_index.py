@@ -340,7 +340,9 @@ def find_toc_pages(start_page_index, page_list, opt, logger=None):
         # Only check beyond max_pages if we're still finding TOC pages
         if i >= opt.toc_check_page_num and not last_page_is_yes:
             break
+        print(f'  Checking page {i+1}/{len(page_list)} for TOC...', flush=True)
         detected_result = toc_detector_single_page(page_list[i][0],model=opt.model)
+        print(f'  Page {i+1}: toc_detected={detected_result}', flush=True)
         if detected_result == 'yes':
             if logger:
                 logger.info(f'Page {i} has toc')
